@@ -21,6 +21,14 @@ type Response = {
     is_hidden: boolean;
     slot: number;
   }[];
+  stats: {
+    base_stat: number;
+    effort: number;
+    stat: {
+      name: string;
+      url: string;
+    };
+  }[];
 };
 
 type fetchPokemonDetailsParams = {
@@ -33,13 +41,16 @@ export const fetchPokemonDetails = async ({
   const response: Response = await fetch(
     `${pokemonEndpoint}/pokemon/${name}`
   ).then((res) => res.json());
-  console.log(response);
   const pokemonDetails: PokemonDetailsModel = {
     imageUrl: response.sprites.front_default,
     types: response.types.sort((x) => x.slot).map((x) => x.type.name),
     abilities: response.abilities
       .sort((x) => x.slot)
       .map((x) => x.ability.name),
+    stats: response.stats.map((x) => ({
+      name: x.stat.name,
+      baseStat: x.base_stat,
+    })),
     weight: response.weight,
     height: response.height,
   };

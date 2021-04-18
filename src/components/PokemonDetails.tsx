@@ -25,6 +25,16 @@ export const PokemonDetails = ({ name }: PokemonDetailsProps) => {
           <div>Abilities: {details.abilities.join(", ")}</div>
           <div>Weight: {details.weight}</div>
           <div>Height: {details.height}</div>
+          <div>
+            Stats:{" "}
+            <div>
+              {details.stats.map((stat) => (
+                <div key={stat.name}>
+                  {stat.name}: {stat.baseStat}
+                </div>
+              ))}
+            </div>
+          </div>
         </>
       )}
     </div>
