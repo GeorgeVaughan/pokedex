@@ -22,6 +22,7 @@ export const PokemonDetails = ({ name }: PokemonDetailsProps) => {
         <>
           <img src={details.imageUrl} alt={name} />
           <div>Types: {details.types.join(", ")}</div>
+          <div>Abilities: {details.abilities.join(", ")}</div>
           <div>Weight: {details.weight}</div>
         </>
       )}
