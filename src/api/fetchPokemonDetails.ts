@@ -6,6 +6,12 @@ type Response = {
   sprites: {
     front_default: string;
   };
+  types: {
+    slot: number;
+    type: {
+      name: string;
+    };
+  }[];
 };
 
 type fetchPokemonDetailsParams = {
@@ -21,6 +27,7 @@ export const fetchPokemonDetails = async ({
   console.log(response);
   const pokemonDetails: PokemonDetailsModel = {
     imageUrl: response.sprites.front_default,
+    types: response.types.sort((x) => x.slot).map((x) => x.type.name),
     weight: response.weight,
   };
   return pokemonDetails;
