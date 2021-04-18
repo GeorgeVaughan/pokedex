@@ -3,6 +3,7 @@ import { pokemonEndpoint } from "./pokemonEndpoint";
 
 type Response = {
   weight: number;
+  height: number;
   sprites: {
     front_default: string;
   };
@@ -40,6 +41,7 @@ export const fetchPokemonDetails = async ({
       .sort((x) => x.slot)
       .map((x) => x.ability.name),
     weight: response.weight,
+    height: response.height,
   };
   return pokemonDetails;
 };

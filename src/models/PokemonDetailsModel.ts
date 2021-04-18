@@ -3,4 +3,5 @@ export type PokemonDetailsModel = {
   types: string[];
   abilities: string[];
   weight: number;
+  height: number;
 };
