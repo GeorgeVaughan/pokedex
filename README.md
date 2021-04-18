@@ -44,3 +44,11 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Test Considerations
+
+To get a quick start on this project, no tests have been added yet.
+
+To add tests it might be worth adding react component tests.
+
+Also some e2e testing using Cypress or similar would be good.
