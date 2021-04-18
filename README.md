@@ -52,3 +52,9 @@ To get a quick start on this project, no tests have been added yet.
 To add tests it might be worth adding react component tests.
 
 Also some e2e testing using Cypress or similar would be good.
+
+## Next Steps
+
+Look into how to get pokemon descriptions from the api, and put these in the `PokemonDetails` component.
+
+Instead of taking the first 151 pokemon in the `fetchPokemonOverviews` query, look at querying using a pokedex.
