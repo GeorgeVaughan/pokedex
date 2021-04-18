@@ -5,5 +5,5 @@ type PokemonListProps = {
 }
 
 export const PokemonList = ({pokemon}: PokemonListProps) => {
-    return <div>{pokemon}</div>
+    return <div>{pokemon.map(({name}) => <div>{name}</div>)}</div>
 }
