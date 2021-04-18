@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { PokemonList } from "./components/PokemonList";
-import { PokemonOverview } from "./models/PokemonOverview";
+import { PokemonOverviewModel } from "./models/PokemonOverviewModel";
 import { fetchPokemonOverviews } from "./api/fetchPokemonOverviews";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { PokemonDetails } from "./components/PokemonDetails";
@@ -9,7 +9,7 @@ import "./App.css";
 
 function App() {
   const [pokemonOverviews, setPokemonOverviews] = useState(
-    [] as PokemonOverview[]
+    [] as PokemonOverviewModel[]
   );
 
   if (pokemonOverviews.length === 0) {

@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { PokemonOverview } from "../models/PokemonOverview";
+import { PokemonOverviewModel } from "../models/PokemonOverviewModel";
 
 type PokemonListProps = {
-  pokemon: PokemonOverview[];
+  pokemon: PokemonOverviewModel[];
 };
 
 export const PokemonList = ({ pokemon }: PokemonListProps) => {

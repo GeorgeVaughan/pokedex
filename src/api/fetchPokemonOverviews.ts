@@ -1,15 +1,16 @@
-import { PokemonOverview } from "../models/PokemonOverview";
+import { PokemonOverviewModel } from "../models/PokemonOverviewModel";
+import { pokemonEndpoint } from "./pokemonEndpoint";
 
 type Response = {
   count: number;
   next: string;
   previous?: string;
-  results: PokemonOverview[];
+  results: PokemonOverviewModel[];
 };
 
 export const fetchPokemonOverviews = async () => {
   const response: Response = await fetch(
-    "https://pokeapi.co/api/v2/pokemon?limit=151"
+    `${pokemonEndpoint}/pokemon?limit=151`
   ).then((res) => res.json());
   return response.results;
 };
