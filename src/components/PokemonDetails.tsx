@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { fetchPokemonDetails } from "../api/fetchPokemonDetails";
 import { PokemonDetailsModel } from "../models/PokemonDetailsModel";
+import { PokemonDetailsEntry } from "./PokemonDetailsEntry";
 
 type PokemonDetailsProps = {
   name: string;
@@ -15,25 +16,35 @@ export const PokemonDetails = ({ name }: PokemonDetailsProps) => {
 
   return (
     <div>
-      <div>Pokemon Details for: {name}</div>
+      <h1>Pokemon Details for: {name}</h1>
       {details === null ? (
         <div>Loading...</div>
       ) : (
         <>
           <img src={details.imageUrl} alt={name} />
-          <div>Types: {details.types.join(", ")}</div>
-          <div>Abilities: {details.abilities.join(", ")}</div>
-          <div>Weight: {details.weight}</div>
-          <div>Height: {details.height}</div>
           <div>
-            Stats:{" "}
-            <div>
-              {details.stats.map((stat) => (
-                <div key={stat.name}>
-                  {stat.name}: {stat.baseStat}
-                </div>
-              ))}
-            </div>
+            <PokemonDetailsEntry name="Types">
+              {details.types.join(", ")}
+            </PokemonDetailsEntry>
+            <PokemonDetailsEntry name="Abilities">
+              {details.abilities.join(", ")}
+            </PokemonDetailsEntry>
+            <PokemonDetailsEntry name="Weight">
+              {details.weight}
+            </PokemonDetailsEntry>
+            <PokemonDetailsEntry name="Height">
+              {details.height}
+            </PokemonDetailsEntry>
+          </div>
+          <div>
+            <h2>Stats:</h2>
+            {details.stats.map((stat) => (
+              <div key={stat.name}>
+                <PokemonDetailsEntry name={stat.name}>
+                  {stat.baseStat}
+                </PokemonDetailsEntry>
+              </div>
+            ))}
           </div>
         </>
       )}
