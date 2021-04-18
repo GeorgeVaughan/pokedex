@@ -19,7 +19,10 @@ export const PokemonDetails = ({ name }: PokemonDetailsProps) => {
       {details === null ? (
         <div>Loading...</div>
       ) : (
-        <div>Weight: {details.weight}</div>
+        <>
+          <img src={details.imageUrl} alt={name} />
+          <div>Weight: {details.weight}</div>
+        </>
       )}
     </div>
   );

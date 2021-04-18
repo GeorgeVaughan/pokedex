@@ -3,6 +3,9 @@ import { pokemonEndpoint } from "./pokemonEndpoint";
 
 type Response = {
   weight: number;
+  sprites: {
+    front_default: string;
+  };
 };
 
 type fetchPokemonDetailsParams = {
@@ -15,7 +18,9 @@ export const fetchPokemonDetails = async ({
   const response: Response = await fetch(
     `${pokemonEndpoint}/pokemon/${name}`
   ).then((res) => res.json());
+  console.log(response);
   const pokemonDetails: PokemonDetailsModel = {
+    imageUrl: response.sprites.front_default,
     weight: response.weight,
   };
   return pokemonDetails;
