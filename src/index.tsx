@@ -5,6 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { store } from "./store";
 
+import "carbon-components/scss/globals/scss/styles.scss";
 import "./index.css";
 
 ReactDOM.render(
