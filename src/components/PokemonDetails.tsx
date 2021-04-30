@@ -1,6 +1,8 @@
-import { useState } from "react";
-import { fetchPokemonDetails } from "../api/fetchPokemonDetails";
-import { PokemonDetailsModel } from "../models/PokemonDetailsModel";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  loadPokemonDetails,
+  selectPokemonDetails,
+} from "../reducers/pokemonDetailsSlice";
 import { PokemonDetailsEntry } from "./PokemonDetailsEntry";
 
 type PokemonDetailsProps = {
@@ -8,16 +10,15 @@ type PokemonDetailsProps = {
 };
 
 export const PokemonDetails = ({ name }: PokemonDetailsProps) => {
-  const [details, setDetails] = useState(null as PokemonDetailsModel | null);
+  const dispatch = useDispatch();
 
-  if (details === null) {
-    fetchPokemonDetails({ name }).then(setDetails);
-  }
+  dispatch(loadPokemonDetails(name));
+  const details = useSelector(selectPokemonDetails(name));
 
   return (
     <div>
       <h1>Pokemon Details for: {name}</h1>
-      {details === null ? (
+      {details == null ? (
         <div>Loading...</div>
       ) : (
         <>

@@ -1,13 +1,20 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { PokemonOverviewModel } from "../models/PokemonOverviewModel";
+import {
+  loadPokemonOverviews,
+  selectPokemonOverviews,
+} from "../reducers/pokemonOverviewsSlice";
 
-type PokemonListProps = {
-  pokemon: PokemonOverviewModel[];
-};
+type PokemonListProps = {};
 
-export const PokemonList = ({ pokemon }: PokemonListProps) => {
+export const PokemonList = ({}: PokemonListProps) => {
+  const dispatch = useDispatch();
   const [search, setSearch] = useState("");
+
+  dispatch(loadPokemonOverviews());
+
+  const pokemon = useSelector(selectPokemonOverviews);
 
   const filteredPokemon = pokemon.filter((x) =>
     x.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
