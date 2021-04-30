@@ -37,7 +37,7 @@ export const PokemonList = ({}: PokemonListProps) => {
   };
 
   const listContainerStyling = {
-    margin: "16px",
+    marginTop: "16px",
   };
 
   return (
@@ -57,9 +57,9 @@ export const PokemonList = ({}: PokemonListProps) => {
       {isLoading ? (
         new Array(3).fill(<SkeletonPlaceholder style={listElementStyling} />)
       ) : filteredPokemon.length === 0 ? (
-        <span style={listContainerStyling}>
+        <div style={listContainerStyling}>
           No results found, try searching for a different pokemon
-        </span>
+        </div>
       ) : (
         <UnorderedList style={listContainerStyling}>
           {filteredPokemon.map(({ name }) => (
