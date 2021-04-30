@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -6,7 +6,13 @@ import {
   selectPokemonOverviews,
   selectPokemonOverviewsLoadState,
 } from "../reducers/pokemonOverviewsSlice";
-import { Search, SearchSkeleton } from "carbon-components-react";
+import {
+  Search,
+  SearchSkeleton,
+  SkeletonPlaceholder,
+  UnorderedList,
+  ListItem,
+} from "carbon-components-react";
 
 type PokemonListProps = {};
 
@@ -38,15 +44,23 @@ export const PokemonList = ({}: PokemonListProps) => {
         />
       )}
       {search.length > 0 && <h1>Results for "{search}"</h1>}
-      {isLoading
-        ? "loading..."
-        : filteredPokemon.length === 0
-        ? "No results found, try searching for a different pokemon"
-        : filteredPokemon.map(({ name }) => (
-            <div key={name}>
+      {isLoading ? (
+        new Array(3).fill(
+          <SkeletonPlaceholder
+            style={{ width: "100%", marginTop: "4px", height: "20px" }}
+          />
+        )
+      ) : filteredPokemon.length === 0 ? (
+        "No results found, try searching for a different pokemon"
+      ) : (
+        <UnorderedList>
+          {filteredPokemon.map(({ name }) => (
+            <ListItem key={name}>
               <Link to={`/pokemon/${name}`}>{name}</Link>
-            </div>
+            </ListItem>
           ))}
+        </UnorderedList>
+      )}
     </div>
   );
 };
