@@ -30,6 +30,16 @@ export const PokemonList = ({}: PokemonListProps) => {
     x.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
   );
 
+  const listElementStyling = {
+    width: "100%",
+    marginTop: "4px",
+    height: "20px",
+  };
+
+  const listContainerStyling = {
+    margin: "16px",
+  };
+
   return (
     <div>
       {isLoading ? (
@@ -45,17 +55,15 @@ export const PokemonList = ({}: PokemonListProps) => {
       )}
       {search.length > 0 && <h1>Results for "{search}"</h1>}
       {isLoading ? (
-        new Array(3).fill(
-          <SkeletonPlaceholder
-            style={{ width: "100%", marginTop: "4px", height: "20px" }}
-          />
-        )
+        new Array(3).fill(<SkeletonPlaceholder style={listElementStyling} />)
       ) : filteredPokemon.length === 0 ? (
-        "No results found, try searching for a different pokemon"
+        <span style={listContainerStyling}>
+          No results found, try searching for a different pokemon
+        </span>
       ) : (
-        <UnorderedList>
+        <UnorderedList style={listContainerStyling}>
           {filteredPokemon.map(({ name }) => (
-            <ListItem key={name}>
+            <ListItem key={name} style={listElementStyling}>
               <Link to={`/pokemon/${name}`}>{name}</Link>
             </ListItem>
           ))}
